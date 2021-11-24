@@ -48,7 +48,7 @@ const SignIn = () => {
 
   const handleSubmit = () => {
     const port = process.env.PORT || 8080;
-    Axios.get(`http://localhost:${port}/auth/${user}/${password}`).then(
+    Axios.get(`http://20.188.94.183:${port}/auth/${user}/${password}`).then(
       (response) => {
         setAuthorization(response);
       }
@@ -76,7 +76,7 @@ const SignIn = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4">FIFCO Dashboarawdd</Typography>
+          <Typography variant="h4">FIFCO Dashboard</Typography>
           <Box noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
