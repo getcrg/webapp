@@ -46,12 +46,17 @@ const SignIn = () => {
     }
   }, [authorization]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const port = process.env.PORT || 8080;
-    Axios.get(`20.188.94.183:${port}/auth/${user}/${password}`).then(
-      (response) => {
-        setAuthorization(response);
-      }
+    console.log("Submit", `20.188.94.183:${port}/auth/${user}/${password}`);
+
+    console.log(
+      Axios.get(`http://20.188.94.183:${port}/auth/${user}/${password}`).then(
+        (response) => {
+          setAuthorization(response);
+        }
+      ),
+      "Axios"
     );
   };
 
