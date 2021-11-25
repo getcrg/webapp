@@ -46,18 +46,26 @@ const SignIn = () => {
     }
   }, [authorization]);
 
+  const ajax = ({ url, method = "GET" }) => {
+    const request = new XMLHttpRequest();
+    request.open(method, url, true);
+    request.send(null);
+    request.responseType = "text";
+    console.log(request.responseURL, "Request", typeof request);
+    return request.responseText;
+  };
   const handleSubmit = async () => {
     const port = process.env.PORT || 8080;
-    console.log("Submit", `20.188.94.183:${port}/auth/${user}/${password}`);
+    let xhr;
+    if (window.XMLHttpRequest) xhr = new XMLHttpRequest();
+    xhr.open("GET", `http://20.118.65.75:${port}/auth/${user}/${password}`);
 
-    console.log(
-      Axios.get(`http://20.118.65.75:${port}/auth/${user}/${password}`).then(
-        (response) => {
-          setAuthorization(response);
-        }
-      ),
-      "Axios"
-    );
+    xhr.addEventListener("load", (response) => {
+      if (response.target.responseText === "true") setAuthorization(response);
+      console.log(response.target.responseText); //Hace falta un IF
+    });
+
+    xhr.send();
   };
 
   const handleChange = (event) => {
