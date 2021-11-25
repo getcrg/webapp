@@ -51,7 +51,7 @@ const SignIn = () => {
     console.log("Submit", `20.188.94.183:${port}/auth/${user}/${password}`);
 
     console.log(
-      Axios.get(`https://20.188.94.183:${port}/auth/${user}/${password}`).then(
+      Axios.get(`http://20.118.65.75:${port}/auth/${user}/${password}`).then(
         (response) => {
           setAuthorization(response);
         }
